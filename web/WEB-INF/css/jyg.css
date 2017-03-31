@@ -1,0 +1,426 @@
+
+/*MAIN*/
+div[id=jyg_wrapper]{
+	background: url(../img/bg2.jpg);
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#jyg_content{
+	height: 600px;
+	background-color: rgba(0 , 0 , 0 , 0.2);
+	text-align: center;
+}
+
+#jyg_content>#jyg_logo{
+	position: relative;
+	top: 150px;
+	max-width: 800px;
+	margin: 0px auto;
+	text-align: center;
+}
+
+#jyg_content #jyg_time1{
+	text-align: center;
+	color: white;
+	position: relative;
+	font-size: 60px;
+	font-weight: 900;
+	letter-spacing: 2px;
+	text-align: center;
+}
+
+#jyg_content #jyg_time2{
+	margin-top: 20px;
+	text-align: center;
+	color: white;
+	position: relative;
+	font-size: 12px;
+	font-weight: 900;
+	letter-spacing: 2px;
+	text-align: center;
+}
+
+
+#jyg_content #jyg_logo h1{
+	margin: 0px;
+	color: white;
+	align-items: center;
+	text-align: center;
+}
+
+#jyg_content #jyg_logo div{
+	width: 800px;
+	position: relative;
+	top: 20px;
+	background-color: white;
+	height: 1px;
+}
+
+#jyg_content #jyg_inner{
+	position: relative;
+	top: 200px;
+	text-align: center;
+	height: 100px;
+	width: 200px;
+	margin: 0px auto;
+}
+
+#jyg_content #jyg_inner a{
+	margin: 30px;
+	display: block;
+	text-decoration: none;
+	color: white;
+	transition: all .5s linear;
+}
+
+#jyg_content #jyg_inner #t1:hover{
+	transform: scale(2);
+}
+
+#jyg_content #jyg_inner #t2:hover{
+	transform: scale(2);
+}
+
+#jyg_content #jyg_inner #t3:hover{
+	transform: scale(2);
+}
+
+#jyg_content #jyg_inner #t4:hover{
+	transform: scale(2);
+}
+
+#jyg_footer{
+	position: absolute;
+	bottom: 0px;
+	overflow: hidden;
+	height: 80px;
+	width: 100%;
+	background-color: black;
+	text-align: center;
+}
+
+#jyg_footer #jyg_inner{
+	position: relative;
+	top: 20px;
+	text-align: center;
+}
+
+#jyg_footer #jyg_inner ul{
+	list-style: none;
+	margin:0px;
+	height: 50px;
+}
+
+#jyg_footer #jyg_inner ul li{
+	display: inline-block;
+	height: 60px;
+	margin: 10px;
+	text-decoration: none;
+}
+
+#jyg_footer #jyg_inner ul li a{
+	color: white;
+	text-decoration: none;
+}
+
+
+/*NEWS*/
+div[id=jyg_news_bg]{
+	height:1950px;
+	background: url(../img/back_background.jpg);
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding: 100px 150px;
+}
+
+div[id=jyg_news_wrapper]{
+	height:1750px;
+	background-color: #0F0F0F;
+}
+
+nav{
+	height: 150px;
+	background-color: #0F0F0F;
+}
+
+nav>p{
+	font-size: 14px;
+	display: block;
+	color: #7D7D7D;
+	padding-left: 50px;
+	margin: 0px;
+}
+
+nav>h1{
+	font-size: 30px;
+	display: block;
+	color: white;
+	padding-left: 50px;
+	padding-top: 45px;
+	margin: 0px;
+}
+
+#jyg_banner{
+	height: 350px;
+}
+
+#jyg_banner>#jyg_pic{
+	background: url(../img/bg2.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 300px;
+	width: 100%;
+	margin: 0px;
+}
+
+div[id=jyg_skip]{
+	margin: 0px;
+	height: 50px;
+	background-color: #323232;
+}
+
+#jyg_banner ul{
+	list-style: none;
+	margin: 0px;
+}
+
+#jyg_banner li{
+	margin-right: 20px;
+	line-height: 50px;
+	display: inline-block;
+}
+
+#jyg_banner li>a{
+	color: white;
+	line-height: 50px;
+	display: inline-block;
+	text-decoration: none;
+	font-weight: 100;
+	font-size: 15px;
+}
+
+
+#news_art{
+	margin: 0px;
+	float: left;
+	width: 75%;
+	height: 1200px;
+	/*background-color: red;*/
+}
+
+#news_login{
+	overflow: hidden;
+	margin: 0px;
+	float: right;
+	width: 23%;
+	height: 1200px;
+	/*background-color: blue;*/
+}
+
+#news_login>h1{
+	position: relative;
+	top: 30px;
+	width: 50px;
+	color: white;
+	font-weight: 700;
+	font-size: 14px;
+}
+
+#jyg_info{
+	padding-top: 30px;
+	color: #7D7D7D;
+}
+
+#jyg_info input{
+	margin-top: 20px;
+}
+
+#jyg_info .info{
+	width: 150px;
+	height: 30px;
+}
+
+#jyg_info .button{
+	border: none;
+	color: white;
+	padding: 10px;
+	margin: 20px;
+	height: 40px;
+	width: 100px;
+	background: rgba(108,130,177,0.17);
+}
+
+/*nav>ul{
+	list-style: none;
+	margin: 0px;
+}
+
+nav>ul>li{
+	margin-right: 20px;
+	float: right;
+	line-height: 50px;
+	display: inline-block;
+}
+
+nav li>a{
+	color: white;
+	line-height: 50px;
+	display: inline-block;
+	text-decoration: none;
+}
+
+div[id=logo]{
+	font-size: 20px;
+	font-weight: 900;
+	letter-spacing: 1px;
+	float: left;
+}
+
+div[id=logo]>a{
+	color: white;
+	margin-left: 20px;
+	text-decoration: none;
+	line-height: 50px;
+	display: inline-block;
+}
+
+#yq_content .title{
+	position: relative;
+	text-decoration: none;
+	top: 50px;
+	margin: 0px;
+	color: white;
+	font-weight: 900;
+	font-size: 50px;
+}
+
+#yq_content .des{
+	position: relative;
+	top: 80px;
+	margin: 0px;
+	color: white;
+	font-size: 16px;
+}
+
+#yq_content #yq_frg1{
+	margin: 0px;
+	height: 250px;
+	background-color: #A1979F;
+	transition: all .5s ease;
+}
+
+#yq_content #yq_frg1:hover{
+	height: 300px;
+	background-color: orange;
+}
+
+#yq_content #yq_frg1 #f_img1{
+	float: left;
+	width: 400px;
+	height: 100%;
+}
+
+#yq_content #yq_frg2{
+	margin: 0px;
+	height: 250px;
+	background-color: #7B7279;
+	transition: height .5s ease-in;
+}
+
+#yq_content #yq_frg2:hover{
+	height: 300px;
+	background-color: orange;
+}
+
+#yq_content #yq_frg2 #f_img2{
+	float: right;
+	width: 400px;
+	height: 100%;
+}
+
+#yq_content #yq_frg3{
+	margin: 0px;
+	height: 250px;
+	background-color: #564E53;
+	transition: height .5s ease-in;
+}
+
+#yq_content #yq_frg3:hover{
+	height: 300px;
+	background-color: orange;
+}
+
+#yq_content #yq_frg3 #f_img3{
+	float: left;
+	width: 400px;
+	height: 100%;
+}
+
+#yq_content #yq_frg4{
+	margin: 0px;
+	height: 250px;
+	background-color: #30292D;
+	transition: height .5s ease-in;
+}
+
+#yq_content #yq_frg4:hover{
+	height: 300px;
+	background-color: orange;
+}
+
+#yq_content #yq_frg4 #f_img4{
+	float: right;
+	width: 400px;
+	height: 100%;
+}
+
+#yq_login{
+	display: none;
+	background-color: rgba(0 ,0 ,0 ,0.5);
+	position: fixed;
+	text-align: center;
+	height: 100%;
+	width: 100%;
+	z-index: 3;
+}
+
+#yq_login #yq_info{
+	position: fixed;
+	top: 150px;
+	left:0;
+	right:0;
+	margin-left:auto;
+	margin-right:auto;
+	width: 300px;
+	background-color: rgba(0 ,0 ,0 ,0.8);
+	padding: 30px;
+	color: white;
+}
+
+#yq_login input{
+	margin-top: 20px;
+}
+
+#yq_login .info{
+	width: 300px;
+	height: 30px;
+}
+
+#yq_login .button{
+	border: none;
+	color: white;
+	padding: 10px;
+	margin: 20px;
+	height: 40px;
+	width: 100px;
+	background: #551A8B;
+}
+
+
+	*/
