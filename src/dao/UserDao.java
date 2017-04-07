@@ -134,22 +134,141 @@ public class UserDao {
         connection.close();
     }
 
-    public User UpdateUserByUser(User user, int id) throws SQLException, ClassNotFoundException {
+    public int UpdateUserByUser(User user, int id) throws SQLException, ClassNotFoundException {
         Connection connection = DbAccess.getConnection();
-        String update_Sql = "UPDATE user SET ? = ? WHERE id = ?";
+        String select_Sql = "SELECT username,password,age,gender,headurl FROM USER WHERE id = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(select_Sql);
+        preparedStatement.setInt(1, id);
+        ResultSet resultSet = preparedStatement.executeQuery();
 
-        PreparedStatement preparedStatement = connection.prepareStatement(update_Sql);
+        User currentUser = new User();
+        while (resultSet.next()) {
+            currentUser.setId(resultSet.getInt("id"));
+            currentUser.setUsername(resultSet.getString("username"));
+            currentUser.setPassword(resultSet.getString("password"));
+            currentUser.setAge(resultSet.getInt("age"));
+            currentUser.setGender(resultSet.getInt("gender"));
+            currentUser.setHeadUrl(resultSet.getString("headurl"));
+        }
+
+        resultSet.close();
+        preparedStatement.close();
+
+        int amount = 0;
+
+        if (user.getUsername() != currentUser.getUsername()) {
+            amount++;
+        }
+        if (user.getPassword() != currentUser.getPassword()) {
+            amount++;
+        }
+        if (user.getAge() != currentUser.getAge()) {
+            amount++;
+        }
+        if (user.getGender() != currentUser.getGender()) {
+            amount++;
+        }
+        if (user.getHeadUrl() != currentUser.getHeadUrl()) {
+            amount++;
+        }
+
+        StringBuffer stringBuffer = new StringBuffer();
+        if (amount != 0) {
+            stringBuffer.append("UPDATE USER SET `?` = ?");
+
+            for (int i = 0; i < amount; i++) {
+                stringBuffer.append(",");
+                stringBuffer.append("`?` = ?");
+            }
+            stringBuffer.append(" WHERE id = ?");
+        }//UPDATE USER SET ? = ? where id = ?
+        //UPDATE USER SET ? = ?,? = ? where id = ?
+
+        PreparedStatement preparedStatement1 = connection.prepareStatement(stringBuffer.toString());
+
+        int variable = 0;
+        if (user.getUsername() != currentUser.getUsername() && variable == 0) {
+            preparedStatement1.setString(1, "username");
+            preparedStatement1.setString(2, user.getUsername());
+            variable++;
+        }
+
+        if (user.getPassword() != currentUser.getPassword() && variable == 1) {
+            preparedStatement1.setString(3, "password");
+            preparedStatement1.setString(4, user.getPassword());
+            variable++;
+        } else if (user.getPassword() != currentUser.getPassword() && variable == 0) {
+            preparedStatement1.setString(1, "password");
+            preparedStatement1.setString(2, user.getPassword());
+            variable++;
+        }
+
+        if (user.getAge() != currentUser.getAge() && variable == 2) {
+            preparedStatement1.setString(5, "age");
+            preparedStatement1.setInt(6, user.getAge());
+            variable++;
+        } else if (user.getAge() != currentUser.getAge() && variable == 1) {
+            preparedStatement1.setString(3, "age");
+            preparedStatement1.setInt(4, user.getAge());
+            variable++;
+        } else if (user.getAge() != currentUser.getAge() && variable == 0) {
+            preparedStatement1.setString(1, "age");
+            preparedStatement1.setInt(2, user.getAge());
+            variable++;
+        }
+
+        if (user.getGender() != currentUser.getGender() && variable == 3) {
+            preparedStatement1.setString(7, "gender");
+            preparedStatement1.setInt(8, user.getGender());
+            variable++;
+        } else if (user.getGender() != currentUser.getGender() && variable == 2) {
+            preparedStatement1.setString(5, "gender");
+            preparedStatement1.setInt(6, user.getGender());
+            variable++;
+        } else if (user.getGender() != currentUser.getGender() && variable == 1) {
+            preparedStatement1.setString(3, "gender");
+            preparedStatement1.setInt(4, user.getGender());
+            variable++;
+        } else if (user.getGender() != currentUser.getGender() && variable == 0) {
+            preparedStatement1.setString(1, "gender");
+            preparedStatement1.setInt(2, user.getGender());
+            variable++;
+        }
+
+        if (user.getHeadUrl() != currentUser.getHeadUrl() && variable == 4) {
+            preparedStatement1.setString(1, "headurl");
+            preparedStatement1.setString(2, user.getHeadUrl());
+            variable++;
+        } else if (user.getHeadUrl() != currentUser.getHeadUrl() && variable == 3) {
+            preparedStatement1.setString(1, "headurl");
+            preparedStatement1.setString(2, user.getHeadUrl());
+            variable++;
+        } else if (user.getHeadUrl() != currentUser.getHeadUrl() && variable == 2) {
+            preparedStatement1.setString(1, "headurl");
+            preparedStatement1.setString(2, user.getHeadUrl());
+            variable++;
+        } else if (user.getHeadUrl() != currentUser.getHeadUrl() && variable == 1) {
+            preparedStatement1.setString(1, "headurl");
+            preparedStatement1.setString(2, user.getHeadUrl());
+            variable++;
+        } else if (user.getHeadUrl() != currentUser.getHeadUrl() && variable == 0) {
+            preparedStatement1.setString(1, "headurl");
+            preparedStatement1.setString(2, user.getHeadUrl());
+            variable++;
+        }
+
+        /*===============  id设值  ===============*/
+        preparedStatement1.setInt((variable * 2 + 1), id);
 
         int rows = preparedStatement.executeUpdate();
-
-        String select_Sql = "SELECT username,password,age,gender,headurl FROM USER WHERE id = ?";
-
-
-
         if (rows != 0) {
             preparedStatement.close();
             connection.close();
-
+            return 1;
+        } else {
+            preparedStatement.close();
+            connection.close();
+            return 0;
         }
 
     }

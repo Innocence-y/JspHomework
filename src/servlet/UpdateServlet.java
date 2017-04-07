@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.regex.Pattern;
 
 /**
@@ -29,12 +30,27 @@ public class UpdateServlet extends HttpServlet {
         String key = request.getParameter("key");
         String headurl = request.getParameter("headurl");
 
+        int variable = 0;
         UpdateService updateService = new UpdateService();
-        User user = updateService.UpdateUserById(id, username, password, age, gender, key, headurl);
+        try {
+            variable = updateService.UpdateUserById(id, username, password, age, gender, key, headurl);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
-        // 向页面传参并跳转
-        request.setAttribute("user",user);
-        request.getRequestDispatcher("/WEB-INF/jsp/back/list.jsp").forward(request, response);
+        // 向页面跳转
+        if (variable == 1) {
+            String message = "modify successfully！";
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("/WEB-INF/jsp/list.jsp").forward(request, response);
+        } else {
+            String message = "modify Failure！";
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("/WEB-INF/jsp/list.jsp").forward(request, response);
+        }
+
     }
 
     @Override
