@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 
 /**
  * 批量删除控制层
@@ -16,18 +15,15 @@ import java.sql.SQLException;
 @WebServlet(name = "DeleteBatchServlet", urlPatterns = "/servlet/DeleteBatchServlet")
 public class DeleteBatchServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         // 接受页面的值
         String[] ids = request.getParameterValues("id");
         DeleteService deleteService = new DeleteService();
         try {
-            deleteService.deleteBatch(ids);
+            deleteService.deleteBatchById(ids);
             // 向页面跳转
-            request.getRequestDispatcher("/List.action").forward(request, response);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+            request.getRequestDispatcher("../WEB-INF/jsp/list.jsp").forward(request, response);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

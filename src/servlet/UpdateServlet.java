@@ -19,8 +19,7 @@ import java.util.regex.Pattern;
 @WebServlet(name = "UpdateServlet", urlPatterns = "/servlet/UpdateServlet")
 public class UpdateServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         // 接受页面的值
         String id = request.getParameter("id");
         String username = request.getParameter("username");
@@ -34,9 +33,7 @@ public class UpdateServlet extends HttpServlet {
         UpdateService updateService = new UpdateService();
         try {
             variable = updateService.UpdateUserById(id, username, password, age, gender, key, headurl);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -44,11 +41,19 @@ public class UpdateServlet extends HttpServlet {
         if (variable == 1) {
             String message = "modify successfully！";
             request.setAttribute("message", message);
-            request.getRequestDispatcher("/WEB-INF/jsp/list.jsp").forward(request, response);
+            try {
+                request.getRequestDispatcher("/WEB-INF/jsp/list.jsp").forward(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         } else {
             String message = "modify Failure！";
             request.setAttribute("message", message);
-            request.getRequestDispatcher("/WEB-INF/jsp/list.jsp").forward(request, response);
+            try {
+                request.getRequestDispatcher("/WEB-INF/jsp/list.jsp").forward(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
     }

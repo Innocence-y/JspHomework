@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 
 /**
  * 单条删除控制层
@@ -18,20 +17,17 @@ import java.sql.SQLException;
 public class DeleteOneServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         // 接受页面的值
         String id = request.getParameter("id");
         DeleteService deleteService = new DeleteService();
         try {
-            deleteService.deleteOne(id);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+            deleteService.deleteOneById(id);
+            // 向页面跳转
+            request.getRequestDispatcher("../WEB-INF/jsp/list.jsp").forward(request, response);
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        // 向页面跳转
-        request.getRequestDispatcher("/List.action").forward(request, response);
     }
 
     @Override

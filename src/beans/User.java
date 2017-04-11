@@ -5,13 +5,13 @@ package beans;
  */
 public class User {
     //user.setHeadUrl(String.format("http://images.nowcoder.com/head/%dt.png", random.nextInt(1000)));
-    private int id;
-    private String username;
-    private String password;
-    private int age;
-    private int gender;
-    private int key;
-    private String headUrl;
+    private int id;//用户ID
+    private String username;//用户的用户名
+    private String password;//用户的密码
+    private int age;//用户的年龄
+    private int gender;//用户的性别
+    private int key;//判别是否是管理员的键值
+    private String headUrl;//用户的头像
 
     public User(int id, String username, String password, int age, int gender, int key, String headUrl) {
         this.id = id;

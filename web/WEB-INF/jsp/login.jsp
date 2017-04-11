@@ -42,7 +42,12 @@
             </div>
         </div>
 
-        <article id="news_art"></article>
+        <article id="news_art">
+            <!--
+                <用户列表></用户列表>       分页查询    用户头像，点击用户头像更改用户信息
+                按条件查询的选项框
+            -->
+        </article>
         <aside id="news_login">
             <h1>Login</h1>
             <br>
@@ -55,7 +60,7 @@
                     <input class="info" type="password" name="password" style="margin: 0px 0px 0px 0px"><br>
                     <input class="button" type="submit" name="submit" value="确认" onclick="check()"
                            style="margin: 20px 0px">
-                    <input class="button" type="button" name="register" value="注册"
+                    <input class="button" type="submit" name="register" value="注册"
                            style="margin: 20px 0px" >
                 </form>
             </div>
@@ -63,6 +68,6 @@
     </div>
 
 </div>
-s
+
 </body>
 </html>

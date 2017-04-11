@@ -10,18 +10,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.regex.Pattern;
 
 /**
- * 查询已注册所有用户列表
+ * 查询条件查询用户列表
  */
 @WebServlet(name = "QueryListServlet", urlPatterns = "/servlet/QueryListServlet")
 public class QueryListServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         /*  创建分页对象
         Page page = new Page();
 		Pattern pattern = Pattern.compile("[0-9]{1,9}");
@@ -32,26 +30,38 @@ public class QueryListServlet extends HttpServlet {
 		}
 		 */
         //接收页面的值
-        int gender = Integer.parseInt(request.getParameter("gender"));
+        String frontGender = request.getParameter("gender");
+        int gender = 0;
+        if ("男".equals(frontGender)) {
+            gender = 0;
+        } else if ("女".equals(frontGender))
+            gender = 1;
+
         int frontage = Integer.parseInt(request.getParameter("frontage"));
         int backage = Integer.parseInt(request.getParameter("backage"));
         // 根据条件查询用户列并传给页面
         QueryService listService = new QueryService();
-        try {
-            List<User> userList = listService.queryUserList(gender, frontage, backage);
-            if (userList!=null){
-                //向页面传值
-                request.setAttribute("userList", userList);
-                //向页面跳转
-                request.getRequestDispatcher("../WEB-INF/jsp/login.jsp").forward(request, response);
-            }else {
-                request.getRequestDispatcher("../WEB-INF/jsp/fail.jsp").forward(request,response);
+
+        List<User> userList = listService.queryUserListByC(gender, frontage, backage);
+        if (userList != null) {
+            //向页面传值
+            request.setAttribute("userList", userList);
+            //向页面跳转
+            try {
+                request.getRequestDispatcher("../WEB-INF/jsp/list.jsp").forward(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        } else {
+            String message = "查询失败";
+            request.setAttribute("message", message);
+            try {
+                request.getRequestDispatcher("../WEB-INF/jsp/list.jsp").forward(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+
     }
 
     @Override
